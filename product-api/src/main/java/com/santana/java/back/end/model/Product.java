@@ -14,6 +14,7 @@ import lombok.Data;
 @Data
 @Entity(name="product")
 public class Product {
+	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -26,16 +27,13 @@ public class Product {
     private Category category;
 
     public static Product convert(ProductDTO productDTO) {
-        Product product = new Product();
-        product.setNome(productDTO.getNome());
-        product.setPreco(productDTO.getPreco());
-        product.setDescricao(productDTO.getDescricao());
-        product.setProductIdentifier(
-                productDTO.getProductIdentifier());
-        if (productDTO.getCategoryDTO() != null) {
-            product.setCategory(
-                    Category.convert(productDTO.getCategoryDTO()));
-        }
-        return product;
-    }
+		Product product = new Product();
+		product.setNome(productDTO.getNome());
+		product.setPreco(productDTO.getPreco());
+		product.setProductIdentifier(productDTO.getProductIdentifier());
+		if (productDTO.getCategory() != null) {
+			product.setCategory(Category.convert(productDTO.getCategory()));
+		}
+		return product;
+	}
 }

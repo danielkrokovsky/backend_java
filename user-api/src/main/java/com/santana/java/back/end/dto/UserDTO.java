@@ -14,6 +14,7 @@ public class UserDTO {
     private String endereco;
     private String email;
     private String telefone;
+    private String key;
     private Date dataCadastro;
 
     public static UserDTO convert(User user) {
