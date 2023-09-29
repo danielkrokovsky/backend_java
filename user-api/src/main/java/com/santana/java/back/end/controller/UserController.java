@@ -51,4 +51,11 @@ public class UserController {
             String nome) {
         return userService.queryByName(nome);
     }
+    
+    @GetMapping("/user/cpf/{cpf}")
+    UserDTO findByCpf(
+        @RequestParam(name="key", required=true) String key,
+        @PathVariable String cpf) {
+            return userService.findByCpf(cpf, key);
+    }
 }

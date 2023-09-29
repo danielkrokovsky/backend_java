@@ -14,6 +14,7 @@ import com.santana.java.back.end.dto.ItemDTO;
 import com.santana.java.back.end.dto.ProductDTO;
 import com.santana.java.back.end.dto.ShopDTO;
 import com.santana.java.back.end.dto.ShopReportDTO;
+import com.santana.java.back.end.dto.UserDTO;
 import com.santana.java.back.end.model.Shop;
 import com.santana.java.back.end.repository.ShopRepository;
 
@@ -52,19 +53,20 @@ public class ShopService {
 		return null;
 	}
 
-	public ShopDTO save(ShopDTO shopDTO) {
-		if (userService.getUserByCpf(shopDTO.getUserIdentifier()) == null) {
-			return null;
-		}
-		if (!validateProducts(shopDTO.getItems())) {
-			return null;
-		}
-		shopDTO.setTotal(shopDTO.getItems().stream().map(x -> x.getPrice()).reduce((float) 0, Float::sum));
-		Shop shop = Shop.convert(shopDTO);
-		shop.setDate(LocalDateTime.now());
-		shop = shopRepository.save(shop);
-		return DTOConverter.convert(shop);
+	public ShopDTO save(ShopDTO shopDTO, String key) {
+		
+	    UserDTO userDTO = userService.getUserByCpf(shopDTO.getUserIdentifier(), key);
+	    validateProducts(shopDTO.getItems());
+	    shopDTO.setTotal(shopDTO.getItems()
+	              .stream()
+	              .map(x -> x.getPrice())
+	              .reduce((float) 0, Float::sum));
+	    Shop shop = Shop.convert(shopDTO);
+	    shop.setDate(LocalDateTime.now());
+	    shop = shopRepository.save(shop);
+	    return DTOConverter.convert(shop);
 	}
+
 
 	private boolean validateProducts(List<ItemDTO> items) {
 		for (ItemDTO item : items) {
