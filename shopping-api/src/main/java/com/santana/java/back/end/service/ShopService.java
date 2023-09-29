@@ -1,10 +1,14 @@
 package com.santana.java.back.end.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.santana.java.back.end.converter.DTOConverter;
+import com.santana.java.back.end.dto.ShopReportDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.santana.java.back.end.dto.ShopDTO;
@@ -36,7 +40,7 @@ public class ShopService {
 
     public List<ShopDTO> getByDate(ShopDTO shopDTO) {
         List<Shop> shops = shopRepository
-                .findAllByDataGreaterThanEquals(shopDTO.getDate());
+                .findAllByDateGreaterThan(shopDTO.getDate());
         return shops
                 .stream()
                 .map(ShopDTO::convert)
@@ -57,8 +61,18 @@ public class ShopService {
                 .map(x -> x.getPrice())
                 .reduce((float) 0, Float::sum));
         Shop shop = Shop.convert(shopDTO);
-        shop.setDate(new Date());
+        shop.setDate(LocalDateTime.now());
         shop = shopRepository.save(shop);
         return ShopDTO.convert(shop);
+    }
+
+    public List<ShopDTO> getShopsByFilter(LocalDate dataInicio, LocalDate dataFim, Float valorMinimo) {
+        List<Shop> shops = shopRepository.getShopByFilters(dataInicio, dataFim, valorMinimo);
+        return shops.stream().map(DTOConverter::convert).collect(Collectors.toList());
+
+    }
+
+    public ShopReportDTO getReportByDate(LocalDate dataInicio, LocalDate dataFim) {
+        return shopRepository.getReportByDate(dataInicio, dataFim);
     }
 }

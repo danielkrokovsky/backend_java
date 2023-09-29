@@ -1,11 +1,10 @@
 package com.santana.java.back.end.controller;
 
 import com.santana.java.back.end.dto.ShopReportDTO;
-import com.santana.java.back.end.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.Valid;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -16,9 +15,6 @@ import com.santana.java.back.end.service.ShopService;
 public class ShopController {
     @Autowired
     private ShopService shopService;
-
-    @Autowired
-    private ReportService reportService;
 
     @GetMapping("/shopping")
     public List<ShopDTO> getShops() {
@@ -50,20 +46,19 @@ public class ShopController {
     @GetMapping("/shopping/search")
     public List<ShopDTO> getShopsByFilter(
             @RequestParam(name = "dataInicio", required=true)
-            @DateTimeFormat(pattern = "dd/MM/yyyy") Date dataInicio,
+            @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate dataInicio,
             @RequestParam(name = "dataFim", required=false)
-            @DateTimeFormat(pattern = "dd/MM/yyyy") Date dataFim,
-            @RequestParam(name = "valorMinimo", required=false)
-            Float valorMinimo) {
-        return reportService.getShopsByFilter(dataInicio, dataFim,
-                valorMinimo);
+            @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate dataFim,
+            @RequestParam(name = "valorMinimo", required=false) Float valorMinimo) {
+        return shopService.getShopsByFilter(dataInicio, dataFim, valorMinimo);
     }
+
     @GetMapping("/shopping/report")
     public ShopReportDTO getReportByDate(
             @RequestParam(name = "dataInicio", required=true)
-            @DateTimeFormat(pattern = "dd/MM/yyyy") Date dataInicio,
+            @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate dataInicio,
             @RequestParam(name = "dataFim", required=true)
-            @DateTimeFormat(pattern = "dd/MM/yyyy") Date dataFim) {
-        return reportService.getReportByDate(dataInicio, dataFim);
+            @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate dataFim) {
+        return shopService.getReportByDate(dataInicio, dataFim);
     }
 }
