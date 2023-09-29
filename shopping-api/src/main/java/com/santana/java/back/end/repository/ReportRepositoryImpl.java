@@ -1,16 +1,17 @@
 package com.santana.java.back.end.repository;
 
-import com.santana.java.back.end.dto.ShopReportDTO;
-import com.santana.java.back.end.model.Shop;
-import org.springframework.stereotype.Service;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.santana.java.back.end.dto.ShopReportDTO;
+import com.santana.java.back.end.model.Shop;
 
 @Service
 public class ReportRepositoryImpl implements ReportRepository {
@@ -18,7 +19,8 @@ public class ReportRepositoryImpl implements ReportRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public List<Shop> getShopByFilters(LocalDate dataInicio, LocalDate dataFim, Float valorMinimo) {
         StringBuilder sb = new StringBuilder();
         sb.append("select s ");

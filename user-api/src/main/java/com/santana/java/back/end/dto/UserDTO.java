@@ -1,9 +1,10 @@
 package com.santana.java.back.end.dto;
 
-import com.santana.java.back.end.model.User;
-import lombok.Data;
-
 import java.util.Date;
+
+import com.santana.java.back.end.model.User;
+
+import lombok.Data;
 
 @Data
 public class UserDTO {

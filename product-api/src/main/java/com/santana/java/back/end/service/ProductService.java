@@ -4,13 +4,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.santana.java.back.end.dto.ProductDTO;
-import com.santana.java.back.end.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.santana.java.back.end.dto.CategoryDTO;
+
+import com.santana.java.back.end.dto.ProductDTO;
 import com.santana.java.back.end.model.Product;
-import com.santana.java.back.end.repository.CategoryRepository;
+import com.santana.java.back.end.repository.ProductRepository;
 @Service
 public class ProductService {
     @Autowired

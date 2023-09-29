@@ -2,16 +2,16 @@ package com.santana.java.back.end.service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.santana.java.back.end.converter.DTOConverter;
-import com.santana.java.back.end.dto.ShopReportDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.santana.java.back.end.converter.DTOConverter;
 import com.santana.java.back.end.dto.ShopDTO;
+import com.santana.java.back.end.dto.ShopReportDTO;
 import com.santana.java.back.end.model.Shop;
 import com.santana.java.back.end.repository.ShopRepository;
 

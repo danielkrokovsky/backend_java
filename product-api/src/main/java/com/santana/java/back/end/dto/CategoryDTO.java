@@ -1,11 +1,10 @@
 package com.santana.java.back.end.dto;
 
-import com.santana.java.back.end.model.Category;
-import com.santana.java.back.end.model.Product;
-import lombok.Data;
-
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+
+import com.santana.java.back.end.model.Category;
+
+import lombok.Data;
 
 @Data
 public class CategoryDTO {

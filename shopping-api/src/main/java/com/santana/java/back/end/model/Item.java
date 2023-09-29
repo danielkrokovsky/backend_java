@@ -1,9 +1,10 @@
 package com.santana.java.back.end.model;
 
-import com.santana.java.back.end.dto.ItemDTO;
-import lombok.Data;
+import javax.persistence.Embeddable;
 
-import javax.persistence.*;
+import com.santana.java.back.end.dto.ItemDTO;
+
+import lombok.Data;
 
 @Data
 @Embeddable

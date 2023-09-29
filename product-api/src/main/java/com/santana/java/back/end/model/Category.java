@@ -1,12 +1,13 @@
 package com.santana.java.back.end.model;
 
-import com.santana.java.back.end.dto.CategoryDTO;
-import lombok.Data;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.santana.java.back.end.dto.CategoryDTO;
+
+import lombok.Data;
 
 @Data
 @Entity(name="category")

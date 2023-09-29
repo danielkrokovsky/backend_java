@@ -1,13 +1,15 @@
 package com.santana.java.back.end.model;
 
-import com.santana.java.back.end.dto.UserDTO;
-import lombok.Data;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
+
+import com.santana.java.back.end.dto.UserDTO;
+
+import lombok.Data;
 @Data
 @Entity
 public class User {

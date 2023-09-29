@@ -1,13 +1,14 @@
 package com.santana.java.back.end.dto;
 
-import com.santana.java.back.end.model.Shop;
-import lombok.Data;
+import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
+
+import com.santana.java.back.end.model.Shop;
+
+import lombok.Data;
 
 @Data
 public class ShopDTO {

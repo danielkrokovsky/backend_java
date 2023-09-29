@@ -1,10 +1,15 @@
 package com.santana.java.back.end.model;
 
-import lombok.Data;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import com.santana.java.back.end.dto.ProductDTO;
+
+import lombok.Data;
 
 @Data
 @Entity(name="product")
