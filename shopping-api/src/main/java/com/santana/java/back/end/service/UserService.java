@@ -1,5 +1,6 @@
 package com.santana.java.back.end.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -11,12 +12,15 @@ import com.santana.java.back.end.exception.UserNotFoundException;
 
 @Service
 public class UserService {
+	
+	@Value("${USER_API_URL:http://localhost:8081/product/}")
+    private String userApiURL;
 
 	public UserDTO getUserByCpf(String cpf, String key) {
 		try {
-			String userApiURL = "http://localhost:8080/user/cpf/" + cpf;
+			String url = userApiURL + cpf;
 			RestTemplate restTemplate = new RestTemplate();
-			UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(userApiURL + "/user/cpf/" + cpf);
+			UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url + "/user/cpf/" + cpf);
 			builder.queryParam("key", key);
 			ResponseEntity<UserDTO> response = restTemplate.getForEntity(builder.toUriString(), UserDTO.class);
 			return response.getBody();
